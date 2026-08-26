@@ -1,2 +1,2 @@
 # DNS-Resolver
-DNS resolver with manual interface selection in Python with Scapy.
+DNS resolver with manual interface selection in Python using Scapy.
