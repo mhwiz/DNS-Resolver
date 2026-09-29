@@ -8,13 +8,11 @@ import subprocess
 clsc = "cls" if os.name == "nt" else "clear"
 subprocess.run(clsc, shell=True, check=True)
 
-#Display up and available network interfaces
 print("-------", " Available Network Interface/s", "-------", "\n")
 
 addresses = psutil.net_if_addrs()
 stats = psutil.net_if_stats()
 
-# Filtering out inactive net interfaces
 available_networks = []
 for intface, addr_list in addresses.items():
     if any(getattr(addr, 'address').startswith("169.254") for addr in addr_list):
@@ -24,7 +22,6 @@ for intface, addr_list in addresses.items():
 
 print(available_networks, "\n", flush=True)
 
-# While loop for interface input validation
 ifaceinput = input("Select interface to use: ")
 while ifaceinput not in available_networks:
     print("\n","Please select an available interface!", "\n")
@@ -38,7 +35,6 @@ iface=ifaceinput,
 
 print(p, "\n")
 
-# Clearing up raw packet dump
 if p is None:
     print("No response (timed out).")
 elif not p.haslayer(DNS) or p[DNS].ancount == 0:
